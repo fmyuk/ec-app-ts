@@ -1,4 +1,6 @@
-const initialState = {
+import { UserState } from "../type/type";
+
+const initialState: { users: UserState } = {
   users: {
     isSignedIn: false,
     uid: "",
