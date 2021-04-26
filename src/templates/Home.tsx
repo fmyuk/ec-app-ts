@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { DefaultRootState, useSelector } from "react-redux";
+import { UserState } from "../reducks/type/type";
 import { getUserId } from "../reducks/users/selectors";
 
 const Home = () => {
-  const selector = useSelector(state => state);
+  const selector = useSelector((state: UserState) => state);
   const uid = getUserId(selector);
 
   return (

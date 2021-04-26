@@ -10,7 +10,7 @@ const Login = () => {
     <div>
       <h2>ログイン</h2>
       <button onClick={() => {
-        dispatch(signInAction({ uid: "0001", username: "user" }))
+        dispatch(signInAction({ users: { uid: "0001", username: "user" } }))
         dispatch(push("/"))
       }}>
         ログインする
