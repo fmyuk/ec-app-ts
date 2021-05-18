@@ -1,9 +1,8 @@
 export type UserState = {
-  users: {
-    isSignedIn?: boolean,
-    uid: string,
-    username: string
-  }
+  isSignedIn?: boolean,
+  role: string,
+  uid: string,
+  username: string
 };
 
 export type Action = {

@@ -6,8 +6,9 @@ export const signInAction = (userState: UserState) => {
     type: "SIGN_IN",
     payload: {
       isSignedIn: true,
-      uid: userState.users.uid,
-      username: userState.users.username
+      role: userState.role,
+      uid: userState.uid,
+      username: userState.username
     }
   };
 };
