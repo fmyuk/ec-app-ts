@@ -3,6 +3,11 @@ import { UserState } from "../type/type";
 
 const usersSelector = (state: UserState ) => state;
 
+export const getIsSignedIn = createSelector(
+  [usersSelector],
+  state => state.isSignedIn
+);
+
 export const getUserId = createSelector(
   [usersSelector],
   state => state.uid

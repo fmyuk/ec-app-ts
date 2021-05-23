@@ -10,7 +10,34 @@ export type SignInAction = {
     uid: string,
     username: string
   }
-}
+};
+
+export const listenAuthState = () => {
+  return async (dispatch: Dispatch<any>) => {
+    return auth.onAuthStateChanged(user => {
+      if (user) {
+        const uid = user.uid;
+
+        db.collection("users").doc(uid).get()
+          .then(snapshot => {
+            const data = snapshot.data();
+              
+            if (data) {
+              dispatch(signInAction({
+                isSignedIn: true,
+                role: data.role,
+                uid: uid,
+                username: data.username
+              }));
+              dispatch(push("/"));
+            }
+          })
+      } else {
+        dispatch(push("/signIn"));
+      }
+    })
+  }
+};
 
 export const signIn = (email: string, password: string) => {
   return async (dispatch: Dispatch<any>) => {
