@@ -21,21 +21,23 @@ export const listenAuthState = () => {
         db.collection("users").doc(uid).get()
           .then(snapshot => {
             const data = snapshot.data();
-              
-            if (data) {
-              dispatch(signInAction({
-                isSignedIn: true,
-                role: data.role,
-                uid: uid,
-                username: data.username
-              }));
-              dispatch(push("/"));
+            if (!data) {
+              throw new Error('ユーザーデータが存在しません。')
             }
-          })
+
+            dispatch(signInAction({
+              isSignedIn: true,
+              role: data.role,
+              uid: uid,
+              username: data.username
+            }));
+
+            dispatch(push("/"));
+          });
       } else {
         dispatch(push("/signIn"));
       }
-    })
+    });
   }
 };
 
