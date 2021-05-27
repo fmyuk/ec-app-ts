@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsSignedIn } from "./reducks/users/selectors";
 import { listenAuthState } from "./reducks/users/operations";
 import { UserState } from "./reducks/type/type";
-import { Route } from "react-router";
-import { Home } from "./templates";
 
-const Auth = () => {
+type AuthProps = {
+  children: React.ReactNode
+};
+
+const Auth = ({ children }: AuthProps) => {
   const dispatch = useDispatch();
   const selector = useSelector((state: UserState) => state);
   const isSignedIn = getIsSignedIn(selector);
@@ -18,7 +20,11 @@ const Auth = () => {
   if (!isSignedIn) {
     return <></>;
   } else {
-    return <Route exact path={"(/)?"} component={Home} />;
+    return (
+      <div>
+        {children}
+      </div>
+    );
   }
 };
 
